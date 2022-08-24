@@ -59,7 +59,10 @@ export const TitleSection = styled.section`
     line-height: 1.6;
     border-bottom: 1px solid transparent;
 
+    cursor: pointer;
+    
     &:hover {
+      transition: border-color 0.3s;
       border-bottom-color: ${props => props.theme['blue']};
     }
   }

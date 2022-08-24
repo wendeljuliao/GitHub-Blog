@@ -13,5 +13,8 @@ export const LayoutContainer = styled.div`
 export const LayoutContent = styled.div`
   display: flex;
 
+  justify-content: center;
+  align-items: center;
+
   width: 54rem;
 `;

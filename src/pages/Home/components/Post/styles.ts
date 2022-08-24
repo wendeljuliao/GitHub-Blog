@@ -13,6 +13,8 @@ export const PostContainer = styled.div`
 
   gap: 1.25rem;
 
+  border: 2px solid transparent;
+
   header {
     display: flex;
 
@@ -45,5 +47,13 @@ export const PostContainer = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+  }
+
+  cursor: pointer;
+
+  
+  &:hover {
+    transition: border-color 0.3s;
+    border-color: ${props => props.theme['base-label']};
   }
 `;

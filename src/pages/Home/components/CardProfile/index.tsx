@@ -12,15 +12,19 @@ import {
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { useContext } from "react";
+import { UserContext } from "../../../../contexts/UserContext";
 
 export function CardProfile() {
+  const { user } = useContext(UserContext);
+
   return (
     <ProfileContainer>
       <img src={avatar} alt="" />
       <ProfileContent>
         <TitleSection>
-          <h1>Cameron Williamson</h1>
-          <a href="#">
+          <h1>{user.name}</h1>
+          <a href={user["html_url"]} target="_blank">
             GITHUB
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </a>
@@ -33,15 +37,15 @@ export function CardProfile() {
         <InfosSection>
           <div>
             <FontAwesomeIcon icon={faGithub} />
-            <span>cameronwll</span>
+            <span>{user.username}</span>
           </div>
           <div>
             <FontAwesomeIcon icon={faBuilding} />
-            <span>Rocketseat</span>
+            <span>{user.company ?? "Nada declarado"}</span>
           </div>
           <div>
             <FontAwesomeIcon icon={faUserGroup} />
-            <span>32 seguidores</span>
+            <span>{user.followers} seguidores</span>
           </div>
         </InfosSection>
       </ProfileContent>
