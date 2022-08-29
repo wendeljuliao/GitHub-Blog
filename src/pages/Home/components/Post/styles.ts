@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ReactMarkdown from "react-markdown";
 
 export const PostContainer = styled.div`
   display: flex;
@@ -38,17 +39,6 @@ export const PostContainer = styled.div`
     }
   }
 
-  p {
-    line-height: 1.6;
-    
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-  }
-
   cursor: pointer;
 
   
@@ -56,4 +46,15 @@ export const PostContainer = styled.div`
     transition: border-color 0.3s;
     border-color: ${props => props.theme['base-label']};
   }
+`;
+
+export const Description = styled(ReactMarkdown)`
+  line-height: 1.6;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 `;

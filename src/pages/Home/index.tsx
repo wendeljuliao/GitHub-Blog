@@ -1,12 +1,13 @@
-import { useContext } from "react";
+import { useContextSelector } from "use-context-selector";
 import { UserContext } from "../../contexts/UserContext";
 import { CardProfile } from "./components/CardProfile";
 import { Post } from "./components/Post";
 import { HomeContainer, PostsContent, Publications, Search } from "./styles";
 
 export function Home() {
-  const { issues } = useContext(UserContext);
-  console.log(issues);
+  const issues = useContextSelector(UserContext, (context) => {
+    return context.issues;
+  });
 
   return (
     <HomeContainer>
@@ -23,6 +24,7 @@ export function Home() {
           {issues.map((post) => (
             <Post
               key={post.id}
+              number={post.number}
               url={post.url}
               title={post.title}
               description={post.body}

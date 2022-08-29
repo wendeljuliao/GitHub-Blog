@@ -12,11 +12,13 @@ import {
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { useContext } from "react";
 import { UserContext } from "../../../../contexts/UserContext";
+import { useContextSelector } from "use-context-selector";
 
 export function CardProfile() {
-  const { user } = useContext(UserContext);
+  const user = useContextSelector(UserContext, (context) => {
+    return context.user;
+  });
 
   return (
     <ProfileContainer>

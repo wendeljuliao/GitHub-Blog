@@ -1,10 +1,5 @@
-import {
-  createContext,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
+import { createContext } from "use-context-selector";
 import { api } from "../services/api";
 
 interface IUser {
@@ -18,6 +13,7 @@ interface IUser {
 
 interface IIssue {
   id: number;
+  number: number;
   url: string;
   title: string;
   body: string;
@@ -38,7 +34,7 @@ interface IUsersProviderProps {
 
 export function UserProvider({ children }: IUsersProviderProps) {
   const [user, setUser] = useState({} as IUser);
-  const [issues, setIssues] = useState([]);
+  const [issues, setIssues] = useState<IIssue[]>([]);
 
   const fetchUser = useCallback(async () => {
     const response = await api.get("users/wendeljuliao");

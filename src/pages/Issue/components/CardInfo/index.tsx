@@ -9,8 +9,30 @@ import {
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
+interface ICardInfoProps {
+  url: string;
+  title: string;
+  username: string;
+  createdAt: string;
+  comments: string;
+}
 
-export function CardInfo() {
+export function CardInfo({
+  url,
+  title,
+  username,
+  createdAt,
+  comments,
+}: ICardInfoProps) {
+  const dateFormatted = createdAt
+    ? formatDistanceToNow(new Date(createdAt), {
+        addSuffix: true,
+        locale: ptBR,
+      })
+    : "Desatualizado";
+
   return (
     <CardInfoContainer>
       <section>
@@ -18,24 +40,24 @@ export function CardInfo() {
           <FontAwesomeIcon icon={faChevronLeft} />
           VOLTAR
         </Link>
-        <a href="#">
+        <a href={url} target="_blank">
           VER NO GITHUB
           <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
         </a>
       </section>
-      <h1>JavaScript data types and data structures</h1>
+      <h1>{title}</h1>
       <InfosSection>
         <div>
           <FontAwesomeIcon icon={faGithub} />
-          <span>cameronwll</span>
+          <span>{username}</span>
         </div>
         <div>
           <FontAwesomeIcon icon={faCalendarDay} />
-          <span>Há 1 dia</span>
+          <span>{dateFormatted}</span>
         </div>
         <div>
           <FontAwesomeIcon icon={faComment} />
-          <span>5 comentários</span>
+          <span>{comments} comentários</span>
         </div>
       </InfosSection>
     </CardInfoContainer>
