@@ -23,7 +23,7 @@ interface IIssue {
 interface IUserContextType {
   user: IUser;
   issues: IIssue[];
-  fetchIssues: (text: string) => Promise<void>;
+  fetchIssues: (text?: string) => Promise<void>;
 }
 
 export const UserContext = createContext({} as IUserContextType);
@@ -53,7 +53,7 @@ export function UserProvider({ children }: IUsersProviderProps) {
   const fetchIssues = useCallback(async (text?: string) => {
     const response = await api.get("search/issues", {
       params: {
-        q: `${text ?? ""} repo:wendeljuliao/GitHub-Blog`,
+        q: `repo:wendeljuliao/GitHub-Blog ${text ?? ""} `,
       },
     });
     const data = await response.data.items;
